@@ -1,7 +1,6 @@
 from pinecone import Pinecone
 import google.generativeai as genai
 import random
-import faiss
 import hashlib
 
 genai.configure(api_key="AIzaSyDGJFFUTdcyFzaIcgS698-I7ZvZiWK0WuI")
