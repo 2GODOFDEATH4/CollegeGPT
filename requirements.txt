@@ -12,3 +12,4 @@ pandas
 numpy
 python-dotenv
 langchain-community
+google.generativeai

@@ -21,4 +21,3 @@ def generate(prompt):
        response = model.generate_content(template)
        return response.text
 
-print(generate('what are courses offered by nit kurukestra'))
