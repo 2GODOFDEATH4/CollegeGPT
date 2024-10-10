@@ -28,7 +28,7 @@ if prompt:
             message_placeholder = st.empty()
             message_placeholder.write("Loading...")
 
-        bot_reply = generate(prompt)
+        bot_reply = generate(st.session_state['chat_history'],prompt)
         st.session_state['chat_history'].append({'role': 'model', 'parts': bot_reply})
 
         message_placeholder.write(bot_reply)
