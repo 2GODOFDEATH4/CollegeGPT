@@ -3,7 +3,7 @@ import google.generativeai as genai
 import random
 import hashlib
 
-genai.configure(api_key="AIzaSyDGJFFUTdcyFzaIcgS698-I7ZvZiWK0WuI")
+genai.configure(api_key="AIzaSyClpiiKMB7BtN3Ccdvu99URToNvu6CVBr0")
 pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
 index = 'nitkkrbot'
 
@@ -34,7 +34,7 @@ def store(text, namespace):
             "id": unique_id,
             "values": generate_embeddings(text=clean_text),
             "metadata": {
-                'text': clean_text  # Store the original text under 'text' key
+                'text': clean_text
             }
         })
     index.upsert(vectors=vectors, namespace=namespace)

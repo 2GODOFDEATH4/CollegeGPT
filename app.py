@@ -3,7 +3,7 @@ import time
 from chain import generate
 
 st.title('NIT Kurukestra Bot 💫')
-st.markdown('---')
+st.markdown('----')
 
 
 bot_image = './assets/logo.png'

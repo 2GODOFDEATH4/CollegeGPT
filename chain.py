@@ -1,9 +1,7 @@
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyDGJFFUTdcyFzaIcgS698-I7ZvZiWK0WuI")
+genai.configure(api_key="AIzaSyClpiiKMB7BtN3Ccdvu99URToNvu6CVBr0")
 from functions import similarity
 from find import intent
-from bot import memory
-
 
 
 def generate(history,prompt):

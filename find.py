@@ -1,5 +1,5 @@
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyDGJFFUTdcyFzaIcgS698-I7ZvZiWK0WuI")
+genai.configure(api_key="AIzaSyClpiiKMB7BtN3Ccdvu99URToNvu6CVBr0")
 from functions import similarity
 
 #1yes,0No
