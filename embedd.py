@@ -2,7 +2,7 @@ from pinecone import Pinecone
 import google.generativeai as genai
 
 
-genai.configure(api_key="AIzaSyClpiiKMB7BtN3Ccdvu99URToNvu6CVBr0")
+genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
 pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
 index = pc.Index("mogga")
 
