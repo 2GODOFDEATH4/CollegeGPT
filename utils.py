@@ -18,4 +18,3 @@ def chunk_data(docs, chunk_size=1000, chunk_overlap=100):
 
 
 
-

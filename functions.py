@@ -60,7 +60,26 @@ def similarity(question, namespace, top_k=3):
     
     return pokemon
 
-   
-    
+def store_JSON(data,namespace='NITKKR'):
+    index = pc.Index("nitkkrbot")
+    vectors = []
+    metadata = []
+    for year_data in data:
+        for section_data in year_data["sections"]:
+            for student_data in section_data["students"]:
+                vector = generate_embeddings(student_data["name"])
+
+                # Create metadata
+                meta = {
+                    "year": year_data["year"],
+                    "className": section_data["className"],
+                    "roll_number": student_data["roll_number"],
+                }
+
+                vectors.append(vector)
+                metadata.append(meta)
+
+    # Upsert the vectors to the index
+    index.upsert(vectors=vectors, metadata=metadata)
 
 

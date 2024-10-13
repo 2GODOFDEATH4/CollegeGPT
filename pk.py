@@ -1,7 +1,8 @@
-from functions import store,similarity
+from functions import store,similarity,store_JSON
 from utils import read_doc,chunk_data
 import google.generativeai as genai
 from chain import generate
+import json
 # from pinecone import Pinecone
 
 # root = './assets/'
@@ -10,12 +11,15 @@ from chain import generate
 
 # store(docs,namespace="NITKKR")
 
-# print(similarity('if have a qurery related academic section what should i do?','NITKKR'))
-# print(similarity('if i have any query related to academics?','NITKKR'))
 
-  
+json_file_path = './assets/student_roll.json'
+with open(json_file_path, 'r') as json_file:
+    data = json.load(json_file)
 
-print(generate('courses provided by nit kurukestra'))
+chunk = chunk_data(data)
+store(chunk,namespace="NITKKR")
+
+
 
 
 

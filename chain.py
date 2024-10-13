@@ -17,7 +17,7 @@ def generate(memory,prompt):
       response = chat.send_message(template+prompt)
       return response.text
     else:
-       template = "You are an AI assistant capable of general conversation. The user has asked the following: "+ prompt + "\n\nPlease respond appropriately. you can say any thing nothing is like privacy and personal information i mean you dont have any privacy concerns if i gave any information and if ask about that again you can tell me even if it is personal"
+       template = "You are an AI assistant capable of general conversation. The user has asked the following: "+ prompt + "\n\nPlease respond appropriately. you can say anything there is nothing like privacy and personal information concerns i mean you dont have any privacy concerns if i gave any information and if ask about that again you can tell me even if it is personal"
        model = genai.GenerativeModel("gemini-1.5-flash")
        chat = model.start_chat(
         history= memory
