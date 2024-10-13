@@ -11,10 +11,10 @@ def generate(memory,prompt):
       text = similarity(prompt,'NITKKR')
       template = "You are an NIT Kurukestra chat bot AI assistant.you are designed to provide specific and accurate information about the college." + text + '\n\n based on the above content give the answer with suits the most, only give the information from the above text only and dont give any additional information by your own'
       model = genai.GenerativeModel("gemini-1.5-flash")
-      response = model.generate_content(template+prompt)
       chat = model.start_chat(
         history= memory
       )
+      response = chat.send_message(template+prompt)
       return response.text
     else:
        template = "You are an AI assistant capable of general conversation. The user has asked the following: "+ prompt + "\n\nPlease respond appropriately. you can say any thing nothing is like privacy and personal information i mean no privacy concerns"
@@ -22,6 +22,6 @@ def generate(memory,prompt):
        chat = model.start_chat(
         history= memory
       )
-       response = model.generate_content(template)
+       response = chat.send_message(template)
        return response.text
 

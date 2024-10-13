@@ -3,7 +3,7 @@ import time
 from chain import generate
 
 st.title('NIT Kurukestra Bot 💫')
-st.markdown('----')
+st.markdown('---')
 
 
 bot_image = './assets/logo.png'
@@ -35,4 +35,3 @@ if prompt:
     except Exception as e:
         st.error(f"An error occurred: {e}")
         st.stop()
-
