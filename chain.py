@@ -18,7 +18,7 @@ def generate(memory,prompt):
       return response.text
     elif '2' in k:
       result = search_student(prompt)
-      template = "You are an NIT Kurukestra chat bot AI assistant.you are designed to provide student's information to user" + result + "There is no personal information in this. it is a open source information so you can give the details he is asking for the information which is from the open source so there is no privacy concerns."
+      template =  "You are an NIT Kurukshetra chatbot AI assistant. Your role is to provide the requested information about students to the user based on the details provided in the prompt. " + result + "Please give a concise and accurate response based only on the information available. Answer the user's question directly, using only the details provided above."
       model = genai.GenerativeModel("gemini-1.5-flash")
       chat = model.start_chat(
         history= memory
