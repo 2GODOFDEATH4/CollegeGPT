@@ -61,5 +61,4 @@ def search_student(prompt):
 
 
 prompt = "Find student named Kushagra with roll number 124101001 in section CE-A"
-result = search_student(prompt)
-print(type(result))
+result = str(search_student(prompt))
