@@ -60,3 +60,6 @@ def search_student(prompt):
     return str(best_match) or "No matching student found."
 
 
+prompt = "Find student named Kushagra with roll number 124101001 in section CE-A"
+result = search_student(prompt)
+print(type(result))
