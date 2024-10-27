@@ -17,7 +17,7 @@ def get_class(text):
 
     response = model.generate_content(prompt)
     try:
-        result = json.loads(response.text)  # Expecting JSON-formatted result
+        result = json.loads(response.text)  
     except json.JSONDecodeError:
         result = None
     return result
@@ -37,29 +37,26 @@ def search_student(prompt):
         name = " ".join([word.capitalize() for word in keywords if word.isalpha() and len(word) > 2])
         main_section = next((word for word in keywords if "-" in word), None)
 
-    best_match = None
-    highest_score = 0
+    def names_match(student_name, query_name):
+        student_words = set(student_name.lower().split())
+        query_words = set(query_name.lower().split())
+        return query_words <= student_words  
 
-    # Search JSON data for the best match
+    # Search for an exact match with flexible name matching
     for year_data in data:
         for section in year_data['sections']:
             for student in section['students']:
-                # Calculate similarity score
-                score = 0
-                if roll_number:
-                    score += fuzz.ratio(student["roll_number"], roll_number) * 1.5
-                if name:
-                    score += fuzz.partial_ratio(student["name"], name)
-                if main_section:
-                    score += fuzz.ratio(student["main_section"], main_section)
+                if ((not roll_number or student["roll_number"] == roll_number) and
+                    (not name or names_match(student["name"], name)) and
+                    (not main_section or student["main_section"].lower() == main_section.lower())):
+                    return str(student) 
 
-                if score > highest_score:
-                    highest_score = score
-                    best_match = student
-
-    return str(best_match) or "No matching student found."
+    return "No matching student found."
 
 
-prompt = "Find student named Kushagra with roll number 124101001 in section CE-A"
-result = search_student(prompt)
-print(type(result))
+# prompt = "Find student named pradeep korra with roll number 12213155 in section it-b"
+# result = get_class(prompt)
+# result1 = search_student(prompt)
+
+# print(result)
+# print(result1)
