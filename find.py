@@ -11,4 +11,3 @@ def intent(prompt):
     response = model.generate_content(template+prompt)
     return response.text
 
-

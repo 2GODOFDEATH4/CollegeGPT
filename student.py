@@ -57,8 +57,6 @@ def search_student(prompt):
                     highest_score = score
                     best_match = student
 
-    return best_match or "No matching student found."
+    return str(best_match) or "No matching student found."
 
 
-prompt = "Find student named Kushagra with roll number 124101001 in section CE-A"
-result = str(search_student(prompt))
