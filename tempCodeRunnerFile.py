@@ -1,1 +1,0 @@
-store(chunk,namespace="NITKKR")

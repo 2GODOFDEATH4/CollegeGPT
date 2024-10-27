@@ -2,7 +2,7 @@ import google.generativeai as genai
 genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
 from functions import similarity
 from find import intent
-
+from student import search_student
 
 def generate(memory,prompt):
     k = intent(prompt)
@@ -10,6 +10,15 @@ def generate(memory,prompt):
       print('working')
       text = similarity(prompt,'NITKKR')
       template = "You are an NIT Kurukestra chat bot AI assistant.you are designed to provide specific and accurate information about the college." + text + '\n\n based on the above content give the answer with suits the most, only give the information from the above text only and dont give any additional information by your own'
+      model = genai.GenerativeModel("gemini-1.5-flash")
+      chat = model.start_chat(
+        history= memory
+      )
+      response = chat.send_message(template+prompt)
+      return response.text
+    elif '2' in k:
+      result = search_student(prompt)
+      template = "You are an NIT Kurukestra chat bot AI assistant.you are designed to provide student information" + result + "from the above informtion return the asnwer that suits the best."
       model = genai.GenerativeModel("gemini-1.5-flash")
       chat = model.start_chat(
         history= memory

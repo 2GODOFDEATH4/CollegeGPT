@@ -2,6 +2,7 @@ from pinecone import Pinecone
 import google.generativeai as genai
 import random
 import hashlib
+from utils import chunk_json
 
 genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
 pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
@@ -60,26 +61,30 @@ def similarity(question, namespace, top_k=3):
     
     return pokemon
 
-def store_JSON(data,namespace='NITKKR'):
+
+def store_json(student_data, namespace="NITKKR", batch_size=10):
     index = pc.Index("nitkkrbot")
     vectors = []
-    metadata = []
-    for year_data in data:
-        for section_data in year_data["sections"]:
-            for student_data in section_data["students"]:
-                vector = generate_embeddings(student_data["name"])
+    
+    # Process in batches
+    for i in range(0, len(student_data), batch_size):
+        batch = student_data[i:i+batch_size]
+        for chunk in batch:
+            clean_text = clean_vector_id(chunk['chunk_text'])
+            unique_id = hashlib.md5(clean_text.encode('utf-8')).hexdigest()
 
-                # Create metadata
-                meta = {
-                    "year": year_data["year"],
-                    "className": section_data["className"],
-                    "roll_number": student_data["roll_number"],
-                }
+            # Create vector for Pinecone
+            vectors.append({
+                "id": unique_id,
+                "values": generate_embeddings(clean_text),
+                "metadata": chunk['metadata']
+            })
 
-                vectors.append(vector)
-                metadata.append(meta)
+        # Upsert batch to Pinecone
+        index.upsert(vectors=vectors, namespace=namespace)
+        print(f"Batch {i // batch_size + 1} upserted")
 
-    # Upsert the vectors to the index
-    index.upsert(vectors=vectors, metadata=metadata)
+    print('Embedding Generation and Data Storage Done')
+
 
 
