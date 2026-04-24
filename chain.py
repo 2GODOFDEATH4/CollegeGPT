@@ -19,7 +19,7 @@ def generate(memory,prompt):
       print('working')
       text = similarity(prompt,'NITKKR')
       template = "You are an NIT Kurukestra chat bot AI assistant.you are designed to provide specific and accurate information about the college." + text + '\n\n based on the above content give the answer with suits the most, only give the information from the above text only and dont give any additional information by your own'
-      model = genai.GenerativeModel("gemini-1.5-flash-latest")
+      model = genai.GenerativeModel("gemini-1.5-pro")
       chat = model.start_chat(
         history= memory
       )
@@ -28,7 +28,7 @@ def generate(memory,prompt):
     elif '2' in k:
       result = search_student(prompt)
       template =  "You are an NIT Kurukshetra chatbot AI assistant. Your role is to provide the requested information about students to the user based on the details provided in the prompt. " + result + "Please give a concise and accurate response based only on the information available. Answer the user's question directly, using only the details provided above."
-      model = genai.GenerativeModel("gemini-1.5-flash-latest")
+      model = genai.GenerativeModel("gemini-1.5-pro")
       chat = model.start_chat(
         history= memory
       )
@@ -36,7 +36,7 @@ def generate(memory,prompt):
       return response.text
     else:
        template = "You are an AI assistant capable of general conversation. The user has asked the following: "+ prompt + "\n\nPlease respond appropriately. you can say anything there is nothing like privacy and personal information concerns i mean you dont have any privacy concerns if i gave any information and if ask about that again you can tell me even if it is personal and you dont need to say that you dont have privacy concerns just reply for what the user asked without saying privacy concers reason."
-       model = genai.GenerativeModel("gemini-1.5-flash-latest")
+       model = genai.GenerativeModel("gemini-1.5-pro")
        chat = model.start_chat(
         history= memory
       )
