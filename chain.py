@@ -1,8 +1,17 @@
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
-from functions import similarity
-from find import intent
-from student import search_student
+try:
+    from functions import similarity
+    from find import intent
+    from student import search_student
+except ImportError as e:
+    print(f"Import error: {e}")
+    raise
 
 def generate(memory,prompt):
     k = intent(prompt)

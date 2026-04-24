@@ -3,9 +3,25 @@ import google.generativeai as genai
 import random
 import hashlib
 from utils import chunk_json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
-pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
+
+# Initialize Pinecone with API key from environment variable or direct
+try:
+    pinecone_api_key = os.getenv("PINECONE_API_KEY", "178bd010-c7d2-4a89-ab96-d3813eff6792")
+    pc = Pinecone(api_key=pinecone_api_key)
+except Exception as e:
+    print(f"Warning: Pinecone initialization failed: {e}")
+    # Fallback for development
+    try:
+        pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
+    except:
+        pc = None
+
 index = 'nitkkrbot'
 
 

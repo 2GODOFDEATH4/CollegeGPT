@@ -5,7 +5,7 @@ sentence_transformers
 openai
 unstructured
 unstructured[local-inference]
-pinecone-client
+pinecone-client>=3.0.0
 tiktoken
 pypdf
 pandas
