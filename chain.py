@@ -1,10 +1,7 @@
 import google.generativeai as genai
-import os
-from dotenv import load_dotenv
+from config import GEMINI_API_KEY
 
-load_dotenv()
-
-genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
+genai.configure(api_key=GEMINI_API_KEY)
 try:
     from functions import similarity
     from find import intent

@@ -1,5 +1,7 @@
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
+from config import GEMINI_API_KEY
+
+genai.configure(api_key=GEMINI_API_KEY)
 from functions import similarity
 
 #1yes,0No

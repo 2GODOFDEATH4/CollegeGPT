@@ -1,8 +1,9 @@
 import google.generativeai as genai
 from rapidfuzz import fuzz
 import json
+from config import GEMINI_API_KEY
 
-genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
+genai.configure(api_key=GEMINI_API_KEY)
 
 # Load student data
 with open('./assets/student_roll.json') as f:

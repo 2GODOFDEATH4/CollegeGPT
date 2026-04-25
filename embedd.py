@@ -1,9 +1,9 @@
 from pinecone import Pinecone
 import google.generativeai as genai
+from config import GEMINI_API_KEY, PINECONE_API_KEY
 
-
-genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
-pc = Pinecone(api_key="178bd010-c7d2-4a89-ab96-d3813eff6792")
+genai.configure(api_key=GEMINI_API_KEY)
+pc = Pinecone(api_key=PINECONE_API_KEY)
 index = pc.Index("mogga")
 
 

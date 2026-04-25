@@ -1,18 +1,14 @@
+# config.py loads environment variables and validates required keys.
 from pinecone import Pinecone
 import google.generativeai as genai
 import random
 import hashlib
 from utils import chunk_json
-import os
-from dotenv import load_dotenv
+from config import GEMINI_API_KEY, PINECONE_API_KEY
 
-load_dotenv()
+genai.configure(api_key=GEMINI_API_KEY)
 
-genai.configure(api_key="AIzaSyCqS4dnLO_qKB4aqrh3VZPh1wfEOyUN75E")
-
-# Initialize Pinecone with API key from environment variable or direct
-pinecone_api_key = os.getenv("PINECONE_API_KEY", "178bd010-c7d2-4a89-ab96-d3813eff6792")
-pc = Pinecone(api_key=pinecone_api_key)
+pc = Pinecone(api_key=PINECONE_API_KEY)
 index = 'nitkkrbot'
 
 
