@@ -9,7 +9,7 @@ with open('./assets/student_roll.json') as f:
     data = json.load(f)
 
 def get_class(text):
-    model = genai.GenerativeModel('gemini-1.5-pro',
+    model = genai.GenerativeModel('gemini-2.5-flash',
                                   generation_config={"response_mime_type": "application/json"})
     prompt = """
     Extract the section, name, and roll number from the following text, where sections look like "IT-A", and roll numbers are 8 digits, like "12213149".
